@@ -11,6 +11,8 @@ EGreetings = ['Welcome, what will you have today?','Hello, what can I get for ya
 
 Menu = ['[1]Black Coffee','[2]Cinnamon Roll','[3]Coffee Cake','[4]Ice Coffee','[5]Scone','[6]Python Cafe Expresso']
 
+playerOrder = []
+
 def randomConvo():
   random.choice(Barista)
 
@@ -47,28 +49,8 @@ def randomConvo():
   EMD =["Okay..", "That is not on the menu"]
 
 
-  if CGC == 2:
-    while True: 
-        print("Go on")
-        order = input()
-        match order:
-          case 1:
-            print(str(Menu[0]))
-          case 2:
-            print(str(Menu[1]))
-          case 3:
-            print(str(Menu[2]))
-          case 4:
-            print(str(Menu[3]))
-          case 5:
-            print(str(Menu[4]))
-          case 6:
-            print(str(Menu[5]))
-          case _:
-            print("Sorry we don't have that item")
 
-
-options = ['a bundle of foo','a bag of eggs','an option','exit']
+options = ['Black Coffee','Cinnamon Roll','Coffee Cake','Ice Coffee','Scone','Python Cafe Expresso','exit']
 
 def takeSecond(t,numOfBreaks=1):
     time.sleep(t)
@@ -100,6 +82,42 @@ def userIn(options):
     print('\nI see you have selected: '+ ans)
     return ans
 
+def displayMenu():
+    print('..................................')
+    print('|  this is a picture of the menu  |')
+    print('...................................')
+
+def stateOrder():
+    print('okay so you ordered: ')
+    print(str(playerOrder))
+
+def LeviOrder():
+  print(random.choice(LGreetings) + " *Agressivevly Holds up menu * " + "\n" + str(Menu))
+  displayMenu()
+  ans = userIn(options)
+  if (ans == 'Black Coffee'):
+      print('black coffee or whatever')
+      playerOrder.append('Black Coffee')
+  if (ans == 'exit'):
+      end()
+  stateOrder()
+
+
+
+def order():
+  random.choice(Barista)
+
+  if random.choice(Barista) == Barista[0]:
+    LeviOrder()
+  elif random.choice(Barista) == Barista[1]:
+    print(random.choice(AGreetings) + " Here's our menu " + "\n" + str(Menu))
+    LeviOrder()
+  else:
+    print(random.choice(EGreetings) + " *Hands Menu* " + "\n" + str(Menu))
+    LeviOrder()        
+
+
+
 def intro():
     clearTerm()
     print(' Hello welcome to the Python Coffee shop!')
@@ -110,9 +128,13 @@ def intro():
         if (ans == 'exit'): 
             end()
             break
+        if (ans == 'Black Coffee'): 
+            print('A clean way to start the day')
+            takeSecond(6,6)
         if (ans == 'a bag of eggs'): 
             print('smelly stuff')
             takeSecond(0.5,1)
+            
 
 def end():
     print('Goodbye!')
@@ -132,7 +154,8 @@ def testMain():
 
 def runGame():
     #intro()
-    randomConvo()
+    order()
+    #randomConvo()
 
 runGame()
 
