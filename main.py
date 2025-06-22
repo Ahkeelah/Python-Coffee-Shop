@@ -31,13 +31,6 @@ def userIn(options):
     print('\nI see you have selected: '+ ans)
     return ans
 
-def gameSelector(options,prompt,destinations):
-    def selectorLoop():
-        prompt()
-        ans = userIn(options)
-        destination()
-    return selectorLoop
-
 def intro():
     clearTerm()
     print(' Hello welcome to the Python Coffee shop!')
@@ -52,12 +45,9 @@ def intro():
             print('smelly stuff')
             takeSecond(0.5,1)
 
-#intro = gameSelector(options,intro)
-
 def end():
     print('Goodbye!')
     exit
-
 
 def testMain():
     intro()
@@ -66,8 +56,6 @@ def testMain():
         print('please select one of the following options: \n')
         ans = userIn(options)
 
-        #don't think I need this atm
-        #print('user picked ans '+ options[(int(ans)-1)])
         if (ans == 'exit'):
             print('Goodbye!')
             break
@@ -75,6 +63,6 @@ def testMain():
 
 def runGame():
     intro()
-    end()
-#testMain()
+
 runGame()
+
